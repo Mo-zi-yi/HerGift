@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>一份给你的礼物</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: "PingFang SC", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, #1a0b2e 0%, #4a1c40 50%, #2d1b4e 100%);
+      color: #fff;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    canvas#bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 520px;
+    }
+
+    .icon {
+      font-size: 3.5rem;
+      margin-bottom: 24px;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 16px rgba(255, 107, 138, 0.4));
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 300;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+      text-shadow: 0 0 20px rgba(255, 182, 193, 0.5);
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.8;
+      margin-bottom: 48px;
+      letter-spacing: 1px;
+    }
+
+    .buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      min-height: 80px;
+      position: relative;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 50px;
+      padding: 14px 36px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: inherit;
+      letter-spacing: 2px;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .btn-accept {
+      background: linear-gradient(135deg, #ff6b8a, #ff8fab);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(255, 107, 138, 0.35);
+    }
+    .btn-accept:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(255, 107, 138, 0.5);
+    }
+
+    .btn-reject {
+      background: rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .btn-reject:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .hint {
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.3);
+      letter-spacing: 1px;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-6px); }
+      40% { transform: translateX(6px); }
+      60% { transform: translateX(-4px); }
+      80% { transform: translateX(4px); }
+    }
+
+    .shake {
+      animation: shake 0.4s ease;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+
+  <div class="container">
+    <div class="icon">🎁</div>
+    <h1>有人为你准备了一份礼物</h1>
+    <div class="subtitle">
+      我不知道你会不会喜欢，<br/>
+      但如果连打开的勇气都没有，<br/>
+      那应该会挺遗憾的吧。
+    </div>
+
+    <div class="buttons" id="btnWrap">
+      <button class="btn btn-accept" id="acceptBtn">接受惊喜</button>
+      <button class="btn btn-reject" id="rejectBtn">拒绝惊喜</button>
+    </div>
+
+    <div class="hint">提示：不要试图拒绝。</div>
+  </div>
+
+  <script>
+    // 星空背景
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function initStars() {
+      stars = [];
+      const count = Math.floor((canvas.width * canvas.height) / 5000);
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.5 + 0.3,
+          alpha: Math.random(),
+          speed: Math.random() * 0.01 + 0.003
+        });
+      }
+    }
+    initStars();
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        s.alpha += s.speed;
+        const a = 0.3 + Math.abs(Math.sin(s.alpha)) * 0.7;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${a})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+    // 按钮交互
+    const acceptBtn = document.getElementById('acceptBtn');
+    const rejectBtn = document.getElementById('rejectBtn');
+    const wrap = document.getElementById('btnWrap');
+    let rejectCount = 0;
+    let acceptScale = 1;
+
+    acceptBtn.addEventListener('click', () => {
+      window.location.href = 'main.html';
+    });
+
+    let rejectScale = 1;
+
+    function moveRejectBtn() {
+      const btnRect = rejectBtn.getBoundingClientRect();
+      const padding = 16;
+
+      const maxX = window.innerWidth - btnRect.width - padding;
+      const maxY = window.innerHeight - btnRect.height - padding;
+
+      let x = Math.random() * (maxX - padding) + padding;
+      let y = Math.random() * (maxY - padding) + padding;
+
+      // 避免和接受按钮重叠
+      const acceptRect = acceptBtn.getBoundingClientRect();
+      const minDist = 120;
+      let attempts = 0;
+      while (attempts < 20) {
+        const dx = (x + btnRect.width / 2) - (acceptRect.left + acceptRect.width / 2);
+        const dy = (y + btnRect.height / 2) - (acceptRect.top + acceptRect.height / 2);
+        if (Math.sqrt(dx * dx + dy * dy) > minDist) break;
+        x = Math.random() * (maxX - padding) + padding;
+        y = Math.random() * (maxY - padding) + padding;
+        attempts++;
+      }
+
+      rejectBtn.style.position = 'fixed';
+      rejectBtn.style.left = x + 'px';
+      rejectBtn.style.top = y + 'px';
+      rejectBtn.style.transform = `scale(${rejectScale})`;
+      rejectBtn.style.zIndex = '10';
+    }
+
+    rejectBtn.addEventListener('click', () => {
+      rejectCount++;
+      acceptScale += 0.15;
+      acceptBtn.style.transform = `scale(${acceptScale})`;
+
+      // 接受按钮文字变化
+      const texts = ['接受惊喜', '真的接受吧', '别拒绝了', '就点我嘛', '求你了', '❤ 接受 ❤'];
+      acceptBtn.textContent = texts[Math.min(rejectCount, texts.length - 1)];
+
+      // 拒绝按钮变小
+      rejectScale = Math.max(0.6, 1 - rejectCount * 0.08);
+      rejectBtn.style.transform = `scale(${rejectScale})`;
+
+      moveRejectBtn();
+
+      // 抖动效果
+      rejectBtn.classList.remove('shake');
+      void rejectBtn.offsetWidth;
+      rejectBtn.classList.add('shake');
+    });
+
+    // 鼠标靠近拒绝按钮时它也逃跑（增加趣味性）
+    document.addEventListener('mousemove', (e) => {
+      if (rejectCount < 2) return; // 先让用户点两次，再开启逃跑模式
+      const rect = rejectBtn.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dist = Math.sqrt((e.clientX - cx) ** 2 + (e.clientY - cy) ** 2);
+      if (dist < 100) {
+        moveRejectBtn();
+      }
+    });
+  </script>
+</body>
+</html>
