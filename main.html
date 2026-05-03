@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>生日快乐 - 魏沁源</title>
+  <link rel="stylesheet" href="main.css" />
+</head>
+<body>
+  <canvas id="bg"></canvas>
+
+  <div class="wrap">
+    <div class="header">
+      <h1>魏沁源，生日快乐</h1>
+      <div class="sub">愿你今天比昨天更开心一点</div>
+      <div class="hint">点击屏幕任意位置，会有小惊喜</div>
+    </div>
+
+    <div class="card">
+      <h2><span style="font-size:1.3rem">✦</span> 此刻</h2>
+      <p>
+        其实我不太擅长说祝福的话，但我想，在你生日这天，至少应该让你知道——<br/>
+        这个世界上，有人很认真地记住了一个日子。<br/>
+        也希望你以后每一次看到星空，都能想起有人把很多颗星星藏在了这一页里。（哈哈哈哈，生日快乐哦）
+      </p>
+    </div>
+
+    <div class="card gallery-card">
+      <div class="gallery-cover" id="galleryCover">
+        <div class="gallery-cover-inner">
+          <div class="gallery-cover-icon">
+            <div class="polaroid-stack">
+              <div class="polaroid polaroid-1">
+                <div class="polaroid-img">
+                  <div class="polaroid-scene">
+                    <div class="scene-moon"></div>
+                    <div class="scene-star"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="polaroid polaroid-2">
+                <div class="polaroid-img">
+                  <div class="polaroid-scene">
+                    <div class="scene-mountain"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="polaroid polaroid-3">
+                <div class="polaroid-img">
+                  <div class="polaroid-scene">
+                    <div class="scene-flower"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="gallery-cover-label">照片墙</div>
+          <div class="gallery-cover-hint">点击展开</div>
+        </div>
+      </div>
+      <div class="gallery-content" id="galleryContent">
+        <p style="margin-bottom:10px">这里有一些我想让你记住的瞬间。</p>
+        <div class="photos" id="photos">
+        <div class="photo" style="--r: -2deg;">
+          <img src="img/半月.png" alt="">
+          <div class="photo-meta">
+            <div class="desc-text">一轮未到满月前到半月（这个是网图，哈哈哈）</div>
+          </div>
+        </div>
+        <div class="photo" style="--r: 1deg;">
+          <img src="img/be5294cbgy1htqyo5r4t2j20yd23uq60.jpg" alt="">
+          <div class="photo-meta">
+            <div class="desc-text">来自本月（你生日前的满月三月十五）的一轮满月</div>
+          </div>
+        </div>
+        <div class="photo" style="--r: -1deg;">
+          <img src="img/截屏2026-05-02 20.15.25.png" alt="">
+          <div class="photo-meta">
+            <div class="desc-text">月亮圆或不圆都没关系，</div>
+          </div>
+        </div>
+        <div class="photo" style="--r: 2deg;">
+          <video src="img/录屏2026-05-02 19.52.28.mov" muted loop playsinline preload="metadata"></video>
+          <div class="photo-meta">
+            <div class="desc-text">小狗在摇尾巴（点击一下就会动哦）</div>
+          </div>
+        </div>
+        <div class="photo" style="--r: -1.5deg;">
+          <img src="img/IMG_6080.JPG" alt="">
+          <div class="photo-meta">
+            <div class="desc-text">一张绝美的侧颜照片，是上课无意拍到的（是拍毕业证照片那天哦）</div>
+          </div>
+        </div>
+        <div class="photo" style="--r: 1.5deg;">
+          <img src="img/12.JPG" alt="">
+          <div class="photo-meta">
+            <div class="desc-text">上课认真捣鼓电脑的照片（😄）</div>
+          </div>
+        </div>
+        <div class="photo" style="--r: -0.5deg;">
+          <img src="img/IMG_6141.JPG" alt="">
+          <div class="photo-meta">
+            <div class="desc-text">弄累啦，吃一口早点（😜）</div>
+          </div>
+        </div>
+        <div class="photo" style="--r: 2.5deg;">
+          <img src="img/IMG_6080 2.JPG" alt="">
+          <div class="photo-meta">
+            <div class="desc-text">依旧是侧颜长发还是好看</div>
+          </div>
+        </div>
+        <div class="photo" style="--r: -1deg;">
+          <img src="img/IMG_5682.JPG" alt="">
+          <div class="photo-meta">
+            <div class="desc-text">菜猪和加菲猫</div>
+          </div>
+        </div>
+        <div class="photo" style="--r: 1deg;">
+          <img src="img/IMG_5977.JPG" alt="">
+          <div class="photo-meta">
+            <div class="desc-text">我拍的樱桃花</div>
+          </div>
+        </div>
+        <div class="photo" style="--r: -2deg;">
+          <img src="img/IMG_5988.JPG" alt="">
+          <div class="photo-meta">
+            <div class="desc-text">山上的野菊花</div>
+          </div>
+        </div>
+        <div class="photo" style="--r: 2deg;">
+          <img src="img/IMG_6074.JPG" alt="">
+          <div class="photo-meta">
+            <div class="desc-text">校园的樱花</div>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="card letter-card">
+      <div class="envelope-scene" id="envelopeScene">
+        <div class="envelope" id="envelope">
+          <div class="envelope-flap"></div>
+          <div class="envelope-body">
+            <div class="envelope-front">
+              <div class="envelope-icon">✉</div>
+              <div class="envelope-label">一封写给你的信</div>
+              <div class="envelope-hint">点击打开</div>
+              <div class="envelope-seal">❦</div>
+            </div>
+            <div class="envelope-back"></div>
+          </div>
+        </div>
+        <div class="letter-paper" id="letterPaper">
+          <div class="letter-paper-inner">
+            <p class="letter-text">
+              生日快乐呀！<br/><br/>
+              其实酝酿了很久，还是想用文字悄悄记下这份心意，不惊不扰，只当作给你的一份专属仪式感。（开学前和你聊天时，你说不在意，但是放假过生日还是要有仪式感的哦）<br/><br/>
+              给你准备啦二十二岁的生日惊喜 <a href="http://47.109.21.99" target="_blank" class="letter-link">http://47.109.21.99</a>（给你准备啦一个类似于应用的软件，遇到对的人可以使用，可以登陆进去看看哦 <a href="http://qinxinyuan.vip/" target="_blank" class="letter-link">http://qinxinyuan.vip/</a>这个网址和前面一样但是，需要等几天才可以用哦）就从开学时开始为你准备这个生日礼物了，因为当时得知你生日的日子，就想着准备一个什么礼物，想来想去就写了这个，希望你能喜欢这个礼物（我目前也只能准备以代码为基础的特别礼物了，写的不好请原谅，哈哈哈哈）<br/><br/>
+              能以同班同学的身份认识你，实属幸运至极。<br/><br/>
+              愿你新的一岁，平安喜乐，顺遂无忧，所求皆如愿，所行皆坦途，自在如风，万事胜意。<br/><br/>
+              往后岁岁年年，愿你永远被生活温柔偏爱，开开心心。
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span style="font-size:1.3rem">✦</span> 一些奇奇怪怪的数据</h2>
+      <div class="heart-line">
+        <div class="heart"></div>
+        <span>据说人一生会遇到约 2920 万人，而我只想记住其中一个人的生日。</span>
+      </div>
+      <p style="margin-top:8px">
+        地球公转一周需要 365.25 天，而你每年都比太阳更准时地长大一岁。<br/>
+        每每手机有声响，都会莫名揣着一点浅浅的期待。
+      </p>
+      <div class="morse">.. / .-.. .. -.- . / -.-- --- ..- .-. / ... -- .. .-.. .</div>
+      <div style="text-align:center;font-size:0.75rem;color:rgba(255,255,255,0.25);margin-top:4px">(据说有人破译了上面这行代码)</div>
+    </div>
+
+    <div class="footer">
+      <div>From someone who thinks you're special</div>
+      <div style="margin-top:6px;font-size:0.75rem">愿所有温柔，都不被辜负</div>
+    </div>
+  </div>
+
+  <div class="hidden-msg" id="hiddenMsg">你今天笑起来，一定很好看。</div>
+
+  <script>
+    // 星空背景
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function initStars() {
+      stars = [];
+      const count = Math.floor((canvas.width * canvas.height) / 5000);
+      for (let i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          r: Math.random() * 1.5 + 0.3,
+          alpha: Math.random(),
+          speed: Math.random() * 0.01 + 0.003,
+          name: Math.random() > 0.98 // 少数星星是“名字星”
+        });
+      }
+    }
+    initStars();
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        s.alpha += s.speed;
+        const a = 0.3 + Math.abs(Math.sin(s.alpha)) * 0.7;
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = s.name ? `rgba(255, 209, 220, ${a})` : `rgba(255, 255, 255, ${a})`;
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+
+    // 预设视频点击播放/暂停
+    document.querySelectorAll('.photo video').forEach(video => {
+      video.addEventListener('click', () => {
+        if (video.paused) video.play(); else video.pause();
+      });
+    });
+
+    // 信封展开/收起
+    const envelope = document.getElementById('envelope');
+    const letterPaper = document.getElementById('letterPaper');
+    const letterCard = document.querySelector('.letter-card');
+    if (envelope && letterPaper) {
+      envelope.addEventListener('click', () => {
+        envelope.classList.add('opened');
+        if (letterCard) letterCard.classList.add('opened');
+        setTimeout(() => {
+          letterPaper.classList.add('opened');
+        }, 300);
+      });
+    }
+
+    // 照片墙展开
+    const galleryCover = document.getElementById('galleryCover');
+    const galleryContent = document.getElementById('galleryContent');
+    const galleryCard = document.querySelector('.gallery-card');
+    if (galleryCover && galleryContent) {
+      galleryCover.addEventListener('click', () => {
+        galleryCover.classList.add('hidden');
+        if (galleryCard) galleryCard.classList.add('opened');
+        setTimeout(() => {
+          galleryContent.classList.add('open');
+        }, 200);
+      });
+    }
+
+    // 点击出现爱心 + 隐藏消息
+    let clickCount = 0;
+    document.addEventListener('click', e => {
+      const heart = document.createElement('div');
+      heart.className = 'click-heart';
+      heart.textContent = ['♥','✦','★','✿'][Math.floor(Math.random()*4)];
+      heart.style.left = e.clientX + 'px';
+      heart.style.top = e.clientY + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 900);
+
+      clickCount++;
+      const msg = document.getElementById('hiddenMsg');
+      if (clickCount === 5) {
+        msg.classList.add('show');
+        setTimeout(() => msg.classList.remove('show'), 3000);
+        clickCount = 0;
+      }
+    });
+  </script>
+</body>
+</html>
